@@ -1,15 +1,19 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
-require('dotenv').config()
 module.exports = {
-  solidity: "0.8.19",
+  solidity: "0.8.9",
+  defaultNetwork: "sepolia",
   networks: {
-    sepolia : {
-       url: process.env.URL,
-       accounts: [process.env.KEY]
-     },
-   },
+    hardhat: {},
+    sepolia: {
+      url: process.env.SEPOLIA_ALCHEMY_RPC_U,
+      // @ts-ignore
+      accounts: [process.env.KEY],
+    },
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY,
+  },
 };
-
-

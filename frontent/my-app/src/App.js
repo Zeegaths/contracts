@@ -1,57 +1,60 @@
-import { useEffect, useState } from 'react';
-import { ethers } from 'ethers';
-import contractABI from './abi.json';
-import './index.css';
+import { useState } from "react";
+import { ethers } from "ethers";
+import contractABI from "./abi.json";
 
 function App() {
-  const contractAddress = "0x8199a8eE572d05221c1CDB908c868435399241c4";
+  const contractAddress = "0x4767E956943e5b5518ed80A18eb9317Ed104BBED";
 
   async function requestAccount() {
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    await window.ethereum.request({ method: "eth_requestAccounts" });
   }
 
-  const [inputMessage, setInputMessage] = useState('');
-  const [contractMessage, setContractMessage] = useState('');
-
+  const [inputMessage, setInputMessage] = useState(""); // Renamed state variable
+  const [getmsg, setGetmsg] = useState("display Here");
   async function sendMessageToContract() {
-    if (typeof window.ethereum !== 'undefined') {
+    // Renamed function
+    if (typeof window.ethereum !== "undefined") {
       await requestAccount();
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
-      const contract = new ethers.Contract(contractAddress, contractABI, signer);
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
 
       try {
         const transaction = await contract.setMessage(inputMessage);
         await transaction.wait();
-        console.log('Message set successfully');
-        getMessageFromContract(); // Retrieve updated message after setting
+        console.log("msg sent");
+        setInputMessage(" ");
       } catch (err) {
-        console.error('Error:', err);
+        console.error("Error:", err);
       }
     }
   }
 
-  async function getMessageFromContract() {
-    if (typeof window.ethereum !== 'undefined') {
+  async function getMessageToContract() {
+    // Renamed function
+    if (typeof window.ethereum !== "undefined") {
       await requestAccount();
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
-      const contract = new ethers.Contract(contractAddress, contractABI, signer);
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
 
       try {
-        const message = await contract.getMessage();
-        await message.wait()
-        setContractMessage(message);
-        console.log('Message retrieved successfully:', message);
+        const transaction = await contract.getMessage();
+        setGetmsg(transaction);
+        console.log(transaction);
       } catch (err) {
-        console.error('Error:', err);
+        console.error("Error:", err);
       }
     }
   }
-
-  useEffect(() => {
-    getMessageFromContract();
-  }, []);
 
   const handleMessageChange = (e) => {
     setInputMessage(e.target.value);
@@ -62,15 +65,15 @@ function App() {
       <div>
         <input
           type="text"
-          placeholder='Enter your message'
+          placeholder="Enter your message"
           value={inputMessage}
-          onChange={handleMessageChange} 
+          onChange={handleMessageChange}
         />
         <button onClick={sendMessageToContract}>Set Message</button>
+        <button onClick={getMessageToContract}>Gaet Message</button>
       </div>
       <div>
-        <button onClick={getMessageFromContract}>Get Message</button>
-        {contractMessage && <p>{contractMessage}</p>}
+        <p>{getmsg}</p>
       </div>
     </div>
   );
