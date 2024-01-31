@@ -1,4 +1,7 @@
-# Sample Hardhat Project
+# Simple smart contract Project
 
 This project demonstrates a basic smart contract that sets and gets a message. 
-THis is the contract address: 0xbaBbB375A9B8dd96B0d56C5e17df513a47fB8aB8npcd
+I used hardhart do deploy due to its compatility with solidity and deloyed it on sepolia testnet.
+I used ether js for integration. 
+I used react for the frontend.
+This is the contract address: 0x4767E956943e5b5518ed80A18eb9317Ed104BBED
