@@ -62,15 +62,15 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <div className="Input">
         <input
           type="text"
           placeholder="Enter your message"
           value={inputMessage}
           onChange={handleMessageChange}
         />
-        <button onClick={sendMessageToContract}>Set Message</button>
-        <button onClick={getMessageToContract}>Get Message</button>
+        <button className="Button" onClick={sendMessageToContract}>Set Message</button>
+        <button className="Button" onClick={getMessageToContract}>Get Message</button>
       </div>
       <div>
         <p>{getmsg}</p>

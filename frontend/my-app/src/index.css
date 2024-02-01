@@ -5,9 +5,52 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(17, 230, 230);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Input {  
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 10px 10px 5px rgb(93, 83, 212);
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-left: 100px;
+  padding-right: 50px;
+  background-color: rgb(37, 36, 36);
+  color:aliceblue  
+}
+
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;   
+}
+
+.Button {
+  max-width: 150px;
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 10px;
+  background-color: rgb(93, 83, 212);
+  color: aliceblue;
+}
+
+input {
+  max-width: 200px;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+/* Add more styling as needed for other elements in the component */
+
