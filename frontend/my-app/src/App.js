@@ -70,7 +70,7 @@ function App() {
           onChange={handleMessageChange}
         />
         <button onClick={sendMessageToContract}>Set Message</button>
-        <button onClick={getMessageToContract}>Gaet Message</button>
+        <button onClick={getMessageToContract}>Get Message</button>
       </div>
       <div>
         <p>{getmsg}</p>
